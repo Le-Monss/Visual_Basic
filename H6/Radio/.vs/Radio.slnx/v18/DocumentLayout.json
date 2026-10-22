@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Sinder\\source\\repos\\Radio\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B71F80CF-162C-250D-6D40-B0C7E63A3913}|Radio.vbproj|c:\\users\\sinder\\source\\repos\\radio\\program.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{B71F80CF-162C-250D-6D40-B0C7E63A3913}|Radio.vbproj|solutionrelative:program.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B71F80CF-162C-250D-6D40-B0C7E63A3913}|Radio.vbproj|c:\\users\\sinder\\source\\repos\\radio\\radio.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{B71F80CF-162C-250D-6D40-B0C7E63A3913}|Radio.vbproj|solutionrelative:radio.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.vb",
+              "DocumentMoniker": "C:\\Users\\Sinder\\source\\repos\\Radio\\Program.vb",
+              "RelativeDocumentMoniker": "Program.vb",
+              "ToolTip": "C:\\Users\\Sinder\\source\\repos\\Radio\\Program.vb",
+              "RelativeToolTip": "Program.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-10-21T19:56:09.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Radio.vb",
+              "DocumentMoniker": "C:\\Users\\Sinder\\source\\repos\\Radio\\Radio.vb",
+              "RelativeDocumentMoniker": "Radio.vb",
+              "ToolTip": "C:\\Users\\Sinder\\source\\repos\\Radio\\Radio.vb",
+              "RelativeToolTip": "Radio.vb",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAYwCAAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-10-20T10:39:08.4Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

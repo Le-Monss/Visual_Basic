@@ -1,0 +1,15 @@
+C:\Users\Sinder\source\repos\Voetballer\obj\Debug\net10.0\Voetballer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sinder\source\repos\Voetballer\obj\Debug\net10.0\Voetballer.AssemblyInfoInputs.cache
+C:\Users\Sinder\source\repos\Voetballer\obj\Debug\net10.0\Voetballer.AssemblyInfo.vb
+C:\Users\Sinder\source\repos\Voetballer\obj\Debug\net10.0\Voetballer.vbproj.CoreCompileInputs.cache
+C:\Users\Sinder\source\repos\Voetballer\bin\Debug\net10.0\Voetballer.exe
+C:\Users\Sinder\source\repos\Voetballer\bin\Debug\net10.0\Voetballer.deps.json
+C:\Users\Sinder\source\repos\Voetballer\bin\Debug\net10.0\Voetballer.runtimeconfig.json
+C:\Users\Sinder\source\repos\Voetballer\bin\Debug\net10.0\Voetballer.dll
+C:\Users\Sinder\source\repos\Voetballer\bin\Debug\net10.0\Voetballer.pdb
+C:\Users\Sinder\source\repos\Voetballer\obj\Debug\net10.0\Voetballer.dll
+C:\Users\Sinder\source\repos\Voetballer\obj\Debug\net10.0\refint\Voetballer.dll
+C:\Users\Sinder\source\repos\Voetballer\obj\Debug\net10.0\Voetballer.pdb
+C:\Users\Sinder\source\repos\Voetballer\obj\Debug\net10.0\Voetballer.genruntimeconfig.cache
+C:\Users\Sinder\source\repos\Voetballer\obj\Debug\net10.0\ref\Voetballer.dll
+C:\Users\Sinder\source\repos\Voetballer\obj\Debug\net10.0\Voetballer.vbproj.Up2Date

@@ -1,0 +1,15 @@
+C:\Users\Sinder\source\repos\Radio\obj\Debug\net10.0\Radio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sinder\source\repos\Radio\obj\Debug\net10.0\Radio.AssemblyInfoInputs.cache
+C:\Users\Sinder\source\repos\Radio\obj\Debug\net10.0\Radio.AssemblyInfo.vb
+C:\Users\Sinder\source\repos\Radio\obj\Debug\net10.0\Radio.vbproj.CoreCompileInputs.cache
+C:\Users\Sinder\source\repos\Radio\bin\Debug\net10.0\Radio.exe
+C:\Users\Sinder\source\repos\Radio\bin\Debug\net10.0\Radio.deps.json
+C:\Users\Sinder\source\repos\Radio\bin\Debug\net10.0\Radio.runtimeconfig.json
+C:\Users\Sinder\source\repos\Radio\bin\Debug\net10.0\Radio.dll
+C:\Users\Sinder\source\repos\Radio\bin\Debug\net10.0\Radio.pdb
+C:\Users\Sinder\source\repos\Radio\obj\Debug\net10.0\Radio.dll
+C:\Users\Sinder\source\repos\Radio\obj\Debug\net10.0\refint\Radio.dll
+C:\Users\Sinder\source\repos\Radio\obj\Debug\net10.0\Radio.pdb
+C:\Users\Sinder\source\repos\Radio\obj\Debug\net10.0\Radio.genruntimeconfig.cache
+C:\Users\Sinder\source\repos\Radio\obj\Debug\net10.0\ref\Radio.dll
+C:\Users\Sinder\source\repos\Radio\obj\Debug\net10.0\Radio.vbproj.Up2Date

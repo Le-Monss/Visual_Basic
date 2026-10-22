@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Sinder\\source\\repos\\Voetballer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D4C7E0F1-5A3D-4A98-8042-86C3016F6C43}|Voetballer.vbproj|c:\\users\\sinder\\source\\repos\\voetballer\\strafschop.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{D4C7E0F1-5A3D-4A98-8042-86C3016F6C43}|Voetballer.vbproj|solutionrelative:strafschop.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StrafSchop.vb",
+              "DocumentMoniker": "C:\\Users\\Sinder\\source\\repos\\Voetballer\\StrafSchop.vb",
+              "RelativeDocumentMoniker": "StrafSchop.vb",
+              "ToolTip": "C:\\Users\\Sinder\\source\\repos\\Voetballer\\StrafSchop.vb",
+              "RelativeToolTip": "StrafSchop.vb",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBsAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-10-21T20:06:46.269Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
