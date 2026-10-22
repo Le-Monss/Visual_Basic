@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Sinder\\source\\repos\\ConsoleApp1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F95245BC-2D0B-9C5B-9A19-363DF40C20C4}|ConsoleApp1\\ConsoleApp1.vbproj|c:\\users\\sinder\\source\\repos\\consoleapp1\\consoleapp1\\draak.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F95245BC-2D0B-9C5B-9A19-363DF40C20C4}|ConsoleApp1\\ConsoleApp1.vbproj|solutionrelative:consoleapp1\\draak.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Draak.vb",
+              "DocumentMoniker": "C:\\Users\\Sinder\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Draak.vb",
+              "RelativeDocumentMoniker": "ConsoleApp1\\Draak.vb",
+              "ToolTip": "C:\\Users\\Sinder\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Draak.vb",
+              "RelativeToolTip": "ConsoleApp1\\Draak.vb",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBsAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-10-08T08:42:44.484Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

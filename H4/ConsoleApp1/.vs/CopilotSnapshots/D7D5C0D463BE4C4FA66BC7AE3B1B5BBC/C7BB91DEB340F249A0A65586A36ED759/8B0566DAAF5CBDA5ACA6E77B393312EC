@@ -1,0 +1,54 @@
+﻿Imports System
+
+Module Program
+
+    Class Draak
+        Public strNaam As String
+        Public strOrigin As String
+        Public strGender As String
+        Public intAge As Integer
+        Public strClass As String
+
+        Public Sub New(strNaam As String, strOrigin As String, strGender As String, intAge As Integer, strClass As String)
+            Me.strNaam = strNaam
+            Me.strOrigin = strOrigin
+            Me.strGender = strGender
+            Me.intAge = intAge
+            Me.strClass = strClass
+        End Sub
+        ' Parameterless constructor (optional defaults)
+        Public Sub New()
+            Me.strNaam = String.Empty
+            Me.strOrigin = String.Empty
+            Me.strGender = String.Empty
+            Me.intAge = 0
+            Me.strClass = String.Empty
+        End Sub
+
+        ' Create a Draak from a single delimited string to reduce typing
+        Public Shared Function Parse(value As String) As Draak
+            ' expected format: "Name|Origin|Gender|Age|Class"
+            Dim parts = value.Split("|"c)
+            Dim age As Integer = 0
+            If parts.Length > 3 Then Integer.TryParse(parts(3), age)
+            Return New Draak(
+                If(parts.Length > 0, parts(0), String.Empty),
+                If(parts.Length > 1, parts(1), String.Empty),
+                If(parts.Length > 2, parts(2), String.Empty),
+                age,
+                If(parts.Length > 4, parts(4), String.Empty)
+            )
+        End Function
+        Public Overrides Function ToString() As String
+            Return $"Naam: {strNaam}" & vbCrLf &
+            $"Origin: {strOrigin}" & vbCrLf &
+            $"Leeftijd: {intAge}" & vbCrLf &
+            $"Gender: {strGender}" & vbCrLf &
+            $"Class: {strClass}"
+        End Function
+    End Class
+    Sub Main(args As String())
+        Console.WriteLine("Hello World!")
+        Dim objDraak As New Draak()
+    End Sub
+End Module
