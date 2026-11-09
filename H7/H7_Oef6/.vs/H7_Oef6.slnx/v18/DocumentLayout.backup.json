@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Sinder\\source\\repos\\H7_Oef6\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FAEE6B5A-C856-4AEA-8493-379B66B0B319}|H7_Oef6.vbproj|c:\\users\\sinder\\source\\repos\\h7_oef6\\program.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{FAEE6B5A-C856-4AEA-8493-379B66B0B319}|H7_Oef6.vbproj|solutionrelative:program.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.vb",
+              "DocumentMoniker": "C:\\Users\\Sinder\\source\\repos\\H7_Oef6\\Program.vb",
+              "RelativeDocumentMoniker": "Program.vb",
+              "ToolTip": "C:\\Users\\Sinder\\source\\repos\\H7_Oef6\\Program.vb*",
+              "RelativeToolTip": "Program.vb*",
+              "ViewState": "AgIAABEAAAAAAAAAAAAgwCQAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-11-09T20:09:48.102Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

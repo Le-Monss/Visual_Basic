@@ -1,0 +1,15 @@
+C:\Users\Sinder\source\repos\H7_Oef6\bin\Debug\net10.0\H7_Oef6.exe
+C:\Users\Sinder\source\repos\H7_Oef6\bin\Debug\net10.0\H7_Oef6.deps.json
+C:\Users\Sinder\source\repos\H7_Oef6\bin\Debug\net10.0\H7_Oef6.runtimeconfig.json
+C:\Users\Sinder\source\repos\H7_Oef6\bin\Debug\net10.0\H7_Oef6.dll
+C:\Users\Sinder\source\repos\H7_Oef6\bin\Debug\net10.0\H7_Oef6.pdb
+C:\Users\Sinder\source\repos\H7_Oef6\obj\Debug\net10.0\H7_Oef6.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sinder\source\repos\H7_Oef6\obj\Debug\net10.0\H7_Oef6.AssemblyInfoInputs.cache
+C:\Users\Sinder\source\repos\H7_Oef6\obj\Debug\net10.0\H7_Oef6.AssemblyInfo.vb
+C:\Users\Sinder\source\repos\H7_Oef6\obj\Debug\net10.0\H7_Oef6.vbproj.CoreCompileInputs.cache
+C:\Users\Sinder\source\repos\H7_Oef6\obj\Debug\net10.0\H7_Oef6.dll
+C:\Users\Sinder\source\repos\H7_Oef6\obj\Debug\net10.0\refint\H7_Oef6.dll
+C:\Users\Sinder\source\repos\H7_Oef6\obj\Debug\net10.0\H7_Oef6.pdb
+C:\Users\Sinder\source\repos\H7_Oef6\obj\Debug\net10.0\H7_Oef6.genruntimeconfig.cache
+C:\Users\Sinder\source\repos\H7_Oef6\obj\Debug\net10.0\ref\H7_Oef6.dll
+C:\Users\Sinder\source\repos\H7_Oef6\obj\Debug\net10.0\H7_Oef6.vbproj.Up2Date
