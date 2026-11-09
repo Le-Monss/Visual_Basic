@@ -32,6 +32,7 @@ Module Program
             MyBase.New(strNaam)
         End Sub
         Public Overrides Sub TrapBal(strNaam As String)
+            Console.WriteLine(Random.Shared.Next(100))
             If (Random.Shared.Next(100) > 30) Then
                 Console.WriteLine(strNaam & " schiet op doel")
             Else
@@ -40,8 +41,10 @@ Module Program
         End Sub
     End Class
     Sub Main(args As String())
-        Dim verdediger As New Speler("jan")
-        Dim aanvaller As New Speler("piet")
+        Console.WriteLine("Geef naam van verdediger: ")
+        Dim verdediger As New Verdediger(Console.ReadLine())
+        Console.WriteLine("Geef naam van aanvaller: ")
+        Dim aanvaller As New Aanvaller(Console.ReadLine())
         verdediger.TrapBal(verdediger.GetNaam())
         aanvaller.TrapBal(aanvaller.GetNaam())
     End Sub
