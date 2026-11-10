@@ -1,0 +1,15 @@
+C:\Users\Sinder\source\repos\Pakketjes\bin\Debug\net10.0\Pakketjes.exe
+C:\Users\Sinder\source\repos\Pakketjes\bin\Debug\net10.0\Pakketjes.deps.json
+C:\Users\Sinder\source\repos\Pakketjes\bin\Debug\net10.0\Pakketjes.runtimeconfig.json
+C:\Users\Sinder\source\repos\Pakketjes\bin\Debug\net10.0\Pakketjes.dll
+C:\Users\Sinder\source\repos\Pakketjes\bin\Debug\net10.0\Pakketjes.pdb
+C:\Users\Sinder\source\repos\Pakketjes\obj\Debug\net10.0\Pakketjes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sinder\source\repos\Pakketjes\obj\Debug\net10.0\Pakketjes.AssemblyInfoInputs.cache
+C:\Users\Sinder\source\repos\Pakketjes\obj\Debug\net10.0\Pakketjes.AssemblyInfo.vb
+C:\Users\Sinder\source\repos\Pakketjes\obj\Debug\net10.0\Pakketjes.vbproj.CoreCompileInputs.cache
+C:\Users\Sinder\source\repos\Pakketjes\obj\Debug\net10.0\Pakketjes.dll
+C:\Users\Sinder\source\repos\Pakketjes\obj\Debug\net10.0\refint\Pakketjes.dll
+C:\Users\Sinder\source\repos\Pakketjes\obj\Debug\net10.0\Pakketjes.pdb
+C:\Users\Sinder\source\repos\Pakketjes\obj\Debug\net10.0\Pakketjes.genruntimeconfig.cache
+C:\Users\Sinder\source\repos\Pakketjes\obj\Debug\net10.0\ref\Pakketjes.dll
+C:\Users\Sinder\source\repos\Pakketjes\obj\Debug\net10.0\Pakketjes.vbproj.Up2Date
