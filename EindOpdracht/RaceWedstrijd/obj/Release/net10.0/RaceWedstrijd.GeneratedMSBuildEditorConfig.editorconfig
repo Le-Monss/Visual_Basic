@@ -11,7 +11,11 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property.EntryPointFilePath = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = RaceWedstrijd
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\jacob.lybaert\Visual_Basic\EindOpdracht\RaceWedstrijd\
+=======
+build_property.ProjectDir = C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\
+>>>>>>> ea13e40313fff850ce105173f6893b29aa4492d1
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
