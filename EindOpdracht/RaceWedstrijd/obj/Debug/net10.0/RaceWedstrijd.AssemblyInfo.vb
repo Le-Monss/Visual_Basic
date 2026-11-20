@@ -16,7 +16,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("RaceWedstrijd"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ad9f6edb24344deae1db26ac5e6f3cbc6ac73543"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc0f91cf2302b186cb8d279bcd2ee404ee00bc89"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("RaceWedstrijd"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("RaceWedstrijd"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")> 
