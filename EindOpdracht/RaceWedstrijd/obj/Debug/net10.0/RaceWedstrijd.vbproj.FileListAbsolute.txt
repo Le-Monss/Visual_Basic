@@ -1,0 +1,16 @@
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\obj\Debug\net10.0\RaceWedstrijd.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\obj\Debug\net10.0\RaceWedstrijd.AssemblyInfoInputs.cache
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\obj\Debug\net10.0\RaceWedstrijd.AssemblyInfo.vb
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\obj\Debug\net10.0\RaceWedstrijd.vbproj.CoreCompileInputs.cache
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\obj\Debug\net10.0\RaceWedstrijd.sourcelink.json
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\bin\Debug\net10.0\RaceWedstrijd.exe
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\bin\Debug\net10.0\RaceWedstrijd.deps.json
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\bin\Debug\net10.0\RaceWedstrijd.runtimeconfig.json
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\bin\Debug\net10.0\RaceWedstrijd.dll
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\bin\Debug\net10.0\RaceWedstrijd.pdb
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\obj\Debug\net10.0\RaceWedstrijd.dll
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\obj\Debug\net10.0\refint\RaceWedstrijd.dll
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\obj\Debug\net10.0\RaceWedstrijd.pdb
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\obj\Debug\net10.0\RaceWedstrijd.genruntimeconfig.cache
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\obj\Debug\net10.0\ref\RaceWedstrijd.dll
+C:\Users\Sinder\GitSHizzles\Visual_Basic\EindOpdracht\RaceWedstrijd\obj\Debug\net10.0\RaceWeds.7872F8F7.Up2Date

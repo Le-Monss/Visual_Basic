@@ -1,29 +1,20 @@
 Imports System
-<<<<<<< HEAD
+Imports System.Collections.Generic
 Imports System.Linq
 
-
-
 Public Class wedstrijd
-    Protected deelnemers As List(Of voertuig)
-    Protected finishafstand As Double
-    Protected naam As String
-    Protected datum As DateTime
-    Protected winnaar As voertuig
+    Protected deelnemers As List(Of Voertuig)
+    Protected winnaar As Voertuig
 
     Protected Sub New()
-        deelnemers = New List(Of voertuig)()
+        deelnemers = New List(Of Voertuig)()
     End Sub
 
-    Public Sub New(finishafstand As Integer)
-        Me.New()
-        Me.finishafstand = finishafstand
+    Public Overridable Sub VoegDeelnemerToe(v As Voertuig)
+        deelnemers.Add(v)
     End Sub
 
-    Public Overridable Sub VoegDeelnemerToe(v As voertuig)
-    End Sub
-
-    Public Overridable Function Start() As voertuig
+    Public Overridable Function Start() As Voertuig
         Return Nothing
     End Function
 
@@ -34,35 +25,40 @@ End Class
 Public Class formule1Race
     Inherits wedstrijd
 
-    Private turns As Integer
+    Private ReadOnly turns As Integer
 
     Public Sub New(turns As Integer)
         MyBase.New()
         Me.turns = turns
     End Sub
 
-    Public Overrides Sub VoegDeelnemerToe(v As voertuig)
-    End Sub
+    Public Overrides Function Start() As Voertuig
+        For Each v As Voertuig In deelnemers
+            For i As Integer = 1 To turns
+                v.Rijd(1)
+            Next
+        Next
 
-    Public Overrides Function Start() As voertuig
-        Return Nothing
+        winnaar = deelnemers.OrderByDescending(Function(v) v.intCounter).FirstOrDefault()
+        Return winnaar
     End Function
 
     Public Overrides Sub ToonUitslag()
+        Dim ranking = deelnemers.OrderByDescending(Function(v) v.intCounter).ToList()
+
+        For i As Integer = 0 To ranking.Count - 1
+            Console.WriteLine($"{i + 1}. {ranking(i).strmerk}: {ranking(i).intCounter:F2}")
+        Next
     End Sub
 End Class
 
 Public Class rallyRace
     Inherits wedstrijd
 
-    Private ondergrond As String
-    Private hoogteverschil As Integer
-    Private vertragingFactor As Double
+    Private ReadOnly vertragingFactor As Double
 
     Public Sub New(ondergrond As String, hoogteverschil As Integer)
         MyBase.New()
-        Me.ondergrond = ondergrond
-        Me.hoogteverschil = hoogteverschil
 
         Select Case ondergrond.Trim().ToLowerInvariant()
             Case "asfalt"
@@ -76,82 +72,138 @@ Public Class rallyRace
         End Select
     End Sub
 
-    Public Overrides Sub VoegDeelnemerToe(v As voertuig)
-    End Sub
-
-    Public Overrides Function Start() As voertuig
-        For Each voertuig In deelnemers
-            voertuig.intCounter = CInt(Math.Ceiling(voertuig.intCounter * vertragingFactor))
+    Public Overrides Function Start() As Voertuig
+        For Each v As Voertuig In deelnemers
+            v.Rijd(CInt(Math.Ceiling(10 * vertragingFactor)))
         Next
 
-        winnaar = deelnemers.OrderBy(Function(v) v.intCounter).FirstOrDefault()
+        winnaar = deelnemers.OrderByDescending(Function(v) v.intCounter).FirstOrDefault()
         Return winnaar
     End Function
 
     Public Overrides Sub ToonUitslag()
-        Dim ranking = deelnemers.OrderBy(Function(v) v.intCounter).ToList()
+        Dim ranking = deelnemers.OrderByDescending(Function(v) v.intCounter).ToList()
 
         For i As Integer = 0 To ranking.Count - 1
-            Console.WriteLine($"{i + 1}. {ranking(i).intCounter}")
+            Console.WriteLine($"{i + 1}. {ranking(i).strmerk}: {ranking(i).intCounter:F2}")
         Next
     End Sub
-=======
-Class Voertuig
-    Protected strmerk As String
-    Protected intSnelheid As Integer
-    Protected intmaxSnelheid As Integer
-    Protected intacceleratie As Double
-    Protected intCounter As Integer
+End Class
 
-    Public Sub New(merk As String, Snelheid As Integer, maxSnelheid As Integer, acceleratie As Double)
+Public Class Voertuig
+    Friend strmerk As String
+    Friend intSnelheid As Integer
+    Friend intmaxSnelheid As Integer
+    Friend intacceleratie As Double
+    Friend intCounter As Double
+
+    Public Sub New(merk As String, snelheid As Integer, maxSnelheid As Integer, acceleratie As Double)
         Me.strmerk = merk
-        Me.intSnelheid = Snelheid
+        Me.intSnelheid = snelheid
         Me.intmaxSnelheid = maxSnelheid
         Me.intacceleratie = acceleratie
         Me.intCounter = 0
     End Sub
-    Public Overridable Function Versnel()
-        intacceleratie -= Random.Shared.NextDouble(1, 2)
+    Private Shared ReadOnly rng As New Random()
+
+    Protected Function RandomBetweenOneAndTwo() As Double
+        Return 1.0 + rng.NextDouble()
     End Function
-    Public Overridable Function Rem()
-        intacceleratie += Random.Shared.NextDouble(1, 2)
-    End Function
-    Public Sub Rijd(intTijd As Integer)
-        intCounter += intmaxSnelheid * intTijd - (intmaxSnelheid / acceleratie) * (1 - Math.Exp(-acceleratie * intTijd)))
+
+    Public Overridable Sub Versnel()
+        intacceleratie += RandomBetweenOneAndTwo()
+    End Sub
+
+    Public Overridable Sub Remmen()
+        intacceleratie = Math.Max(0.1, intacceleratie - RandomBetweenOneAndTwo())
+    End Sub
+
+    Public Sub Rijd(tijd As Integer)
+        If intacceleratie <= 0 Then
+            Throw New InvalidOperationException("Acceleratie moet groter zijn dan nul.")
+        End If
+
+        intCounter += intmaxSnelheid * tijd _
+            - (intmaxSnelheid / intacceleratie) *
+            (1 - Math.Exp(-intacceleratie * tijd))
     End Sub
 End Class
 
-Class Formule1
+Public Class Formule1
     Inherits Voertuig
-    Private intDownforce As Integer
-    Public Sub New(merk As String, Snelheid As Integer, maxSnelheid As Integer, acceleratie As Double, downforce As Integer)
-        MyBase.New(merk, Snelheid, maxSnelheid, acceleratie)
+    Private ReadOnly intDownforce As Integer
+
+    Public Sub New(merk As String, snelheid As Integer, maxSnelheid As Integer,
+                   acceleratie As Double, downforce As Integer)
+        MyBase.New(merk, snelheid, maxSnelheid, acceleratie)
         Me.intDownforce = downforce
     End Sub
-    Public Overrides Function Versnel()
-        intacceleratie -= Random.Shared.NextDouble(1, 2) * (1 + intDownforce / 100)
-    End Function
-    Public Overrides Function Rem()
-        intacceleratie += Random.Shared.NextDouble(1, 2) * (1 + intDownforce / 100)
-    End Function
+
+    Public Overrides Sub Versnel()
+        intacceleratie += RandomBetweenOneAndTwo() * (1 + intDownforce / 100.0)
+    End Sub
+
+    Public Overrides Sub Remmen()
+        intacceleratie = Math.Max(
+            0.1,
+            intacceleratie - RandomBetweenOneAndTwo() * (1 + intDownforce / 100.0)
+        )
+    End Sub
 End Class
 
-Class Rally
+Public Class Rally
     Inherits Voertuig
-    Private intGrip As Integer
-    Public Sub New(merk As String, Snelheid As Integer, maxSnelheid As Integer, acceleratie As Double, grip As Integer)
-        MyBase.New(merk, Snelheid, maxSnelheid, acceleratie)
+
+    Private ReadOnly intGrip As Integer
+
+    Public Sub New(merk As String, snelheid As Integer, maxSnelheid As Integer,
+                   acceleratie As Double, grip As Integer)
+        MyBase.New(merk, snelheid, maxSnelheid, acceleratie)
         Me.intGrip = grip
     End Sub
-    Public Overrides Function Versnel()
-        intacceleratie -= Random.Shared.NextDouble(1, 2) * (1 + intGrip / 100)
-    End Function
-    Public Overrides Function Rem()
-        intacceleratie += Random.Shared.NextDouble(1, 2) * (1 + intGrip / 100)
-    End Function
->>>>>>> ea13e40313fff850ce105173f6893b29aa4492d1
+
+    Public Overrides Sub Versnel()
+        intacceleratie += RandomBetweenOneAndTwo() * (1 + intGrip / 100.0)
+    End Sub
+
+    Public Overrides Sub Remmen()
+        intacceleratie = Math.Max(
+            0.1,
+            intacceleratie - RandomBetweenOneAndTwo() * (1 + intGrip / 100.0)
+        )
+    End Sub
 End Class
 
-Module Program
+Public Module Program
+    Public Sub Main()
+        Console.WriteLine("Kies een race: formule1 of rally")
+        Dim keuze As String = Console.ReadLine().Trim().ToLowerInvariant()
 
+        If (keuze = "formule1)") Then
+            Dim race As New formule1Race(10)
+            race.VoegDeelnemerToe(New Formule1("Ferrari", 200, 350, 3.5, 50))
+            race.VoegDeelnemerToe(New Formule1("Mercedes", 210, 340, 3.2, 60))
+            race.VoegDeelnemerToe(New Formule1("Red Bull", 220, 330, 3.0, 70))
+
+            Dim winnaar As Voertuig = race.Start()
+            Console.WriteLine($"De winnaar is: {winnaar.strmerk}")
+            race.ToonUitslag()
+
+        ElseIf (keuze = "rally") Then
+            Dim race As New rallyRace("gravel", 100)
+            race.VoegDeelnemerToe(New Rally("Subaru", 180, 300, 2.5, 80))
+            race.VoegDeelnemerToe(New Rally("Mitsubishi", 190, 310, 2.8, 70))
+            race.VoegDeelnemerToe(New Rally("Toyota", 200, 320, 3.0, 60))
+
+            Dim winnaar As Voertuig = race.Start()
+            Console.WriteLine($"De winnaar is: {winnaar.strmerk}")
+            race.ToonUitslag()
+
+        Else
+            Console.WriteLine("Ongeldige invoer. Voer 'formule1' of 'rally' in.")
+        End If
+        Console.WriteLine("Press Enter to exit...")
+        Console.ReadLine()
+
+    End Sub
 End Module
