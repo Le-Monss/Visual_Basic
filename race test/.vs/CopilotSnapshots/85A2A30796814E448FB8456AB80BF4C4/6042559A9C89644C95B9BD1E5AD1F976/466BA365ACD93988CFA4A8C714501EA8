@@ -1,0 +1,37 @@
+﻿# Klassendiagram – Racewedstrijd
+
+```text
+Formula1Race                     RallyRace
+- bochten                        - ondergrond
++ Start()                        - hoogteverschil
+	   \                         + Start()
+		\                       /
+		  ------ Wedstrijd ------
+		  - deelnemers: List(Of Voertuig)
+		  - baanLengte: Integer
+		  + VoegDeelnemerToe(v): Sub
+		  + Start(): MustOverride
+		  + ToonUitslag(): Sub
+					|
+					| deelnemers
+					v
+Formula1                         Sportwagen
+- downforce                      - turbo
++ Rijd(): String                 + Rijd(): String
+	   \                         /
+		\                       /
+		  ------ Voertuig ------
+		  - brandstof: Double
+		  - snelheid: Integer
+		  - afstand: Double
+		  + Bestuurder: String
+		  + Merk: String
+		  + MaxSnelheid: Integer
+		  + Acceleratie: Integer
+		  + Rijd(snelheid, bochtLimiet): String
+		  + Tanken(): Double
+		  + Stoppen(): Sub
+		  + Vertraag(snelheid): Sub
+```
+
+`Formula1Race` en `RallyRace` erven van `Wedstrijd`. `Formula1` en `Sportwagen` erven van `Voertuig`. Spelers kiezen racers en instellingen en nemen om de beurt een actie. Brandstofverbruik neemt toe met snelheid; boven de veilige bochtsnelheid vliegt een racer uit de bocht en verbruikt extra brandstof.

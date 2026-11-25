@@ -1,0 +1,242 @@
+﻿Imports System
+Imports System.Collections.Generic
+Imports System.Linq
+
+Module Program
+    Sub Main(args As String())
+        Dim voertuigen As New List(Of Vehicle) From {
+            New Car("Bliksem", 180, 75),
+            New Motorcycle("Valk", 210, 60),
+            New Car("Storm", 165, 55),
+            New Motorcycle("Pijl", 230, 45)
+        }
+
+        Dim keuze As Integer
+        Do
+            Console.WriteLine()
+            Console.WriteLine("=== Racewedstrijd ===")
+            Console.WriteLine("1. Toon alle voertuigen")
+            Console.WriteLine("2. Versnel een voertuig")
+            Console.WriteLine("3. Rem een voertuig")
+            Console.WriteLine("4. Tank een voertuig bij")
+            Console.WriteLine("5. Start een race van vijf rondes")
+            Console.WriteLine("0. Afsluiten")
+            keuze = ReadInteger("Maak je keuze: ", 0, 5)
+
+            Select Case keuze
+                Case 1
+                    ShowVehicles(voertuigen)
+                Case 2
+                    AccelerateVehicle(voertuigen)
+                Case 3
+                    BrakeVehicle(voertuigen)
+                Case 4
+                    RefuelVehicle(voertuigen)
+                Case 5
+                    RunRace(voertuigen)
+                Case 0
+                    Console.WriteLine("De race is afgelopen. Tot ziens!")
+            End Select
+        Loop While keuze <> 0
+    End Sub
+
+    Private Sub ShowVehicles(voertuigen As List(Of Vehicle))
+        Console.WriteLine()
+        For Each voertuig In voertuigen
+            Console.WriteLine(voertuig.GetStatus())
+        Next
+    End Sub
+
+    Private Sub AccelerateVehicle(voertuigen As List(Of Vehicle))
+        Dim voertuig = SelectVehicle(voertuigen)
+        If voertuig Is Nothing Then Return
+
+        Dim snelheid = voertuig.Accelerate()
+        If voertuig.Fuel > 0 Then
+            Console.WriteLine($"{voertuig.Name} versnelt naar {snelheid} km/u.")
+        Else
+            Console.WriteLine($"{voertuig.Name} heeft geen brandstof meer.")
+        End If
+    End Sub
+
+    Private Sub BrakeVehicle(voertuigen As List(Of Vehicle))
+        Dim voertuig = SelectVehicle(voertuigen)
+        If voertuig Is Nothing Then Return
+
+        Dim remkracht = ReadInteger("Hoeveel km/u wil je afremmen? (1-100): ", 1, 100)
+        voertuig.Brake(remkracht)
+        Console.WriteLine($"{voertuig.Name} rijdt nu {voertuig.Speed} km/u.")
+    End Sub
+
+    Private Sub RefuelVehicle(voertuigen As List(Of Vehicle))
+        Dim voertuig = SelectVehicle(voertuigen)
+        If voertuig Is Nothing Then Return
+
+        Dim hoeveelheid = ReadInteger("Hoeveel procent brandstof wil je toevoegen? (1-100): ", 1, 100)
+        Dim toegevoegd = voertuig.Refuel(hoeveelheid)
+        Console.WriteLine($"{voertuig.Name} kreeg {toegevoegd:F1}% brandstof. Tank: {voertuig.Fuel:F1}%.")
+    End Sub
+
+    Private Sub RunRace(voertuigen As List(Of Vehicle))
+        Dim startAfstanden = voertuigen.ToDictionary(Function(voertuig) voertuig, Function(voertuig) voertuig.Distance)
+
+        Console.WriteLine()
+        Console.WriteLine("De race begint!")
+        For ronde As Integer = 1 To 5
+            Console.WriteLine($"Ronde {ronde}:")
+            For Each voertuig In voertuigen
+                If voertuig.RaceStep() Then
+                    Console.WriteLine($"  {voertuig.Name}: {voertuig.Speed} km/u, {voertuig.Distance:F1} km totaal")
+                Else
+                    Console.WriteLine($"  {voertuig.Name} staat stil: geen brandstof meer.")
+                End If
+            Next
+        Next
+
+        Dim uitslag = voertuigen.OrderByDescending(Function(voertuig) voertuig.Distance - startAfstanden(voertuig)).ToList()
+        Console.WriteLine()
+        Console.WriteLine("Uitslag van deze race:")
+        For positie As Integer = 0 To uitslag.Count - 1
+            Dim afgelegd = uitslag(positie).Distance - startAfstanden(uitslag(positie))
+            Console.WriteLine($"{positie + 1}. {uitslag(positie).Name} ({afgelegd:F1} km)")
+        Next
+        Console.WriteLine($"Winnaar: {uitslag(0).Name}!")
+    End Sub
+
+    Private Function SelectVehicle(voertuigen As List(Of Vehicle)) As Vehicle
+        Console.WriteLine()
+        For index As Integer = 0 To voertuigen.Count - 1
+            Console.WriteLine($"{index + 1}. {voertuigen(index).Name} ({voertuigen(index).VehicleType})")
+        Next
+        Console.WriteLine("0. Terug naar het menu")
+
+        Dim keuze = ReadInteger("Kies een voertuig: ", 0, voertuigen.Count)
+        If keuze = 0 Then Return Nothing
+        Return voertuigen(keuze - 1)
+    End Function
+
+    Private Function ReadInteger(vraag As String, minimum As Integer, maximum As Integer) As Integer
+        Dim waarde As Integer
+        Do
+            Console.Write(vraag)
+            If Integer.TryParse(Console.ReadLine(), waarde) AndAlso waarde >= minimum AndAlso waarde <= maximum Then
+                Return waarde
+            End If
+            Console.WriteLine($"Voer een getal in van {minimum} tot en met {maximum}.")
+        Loop
+    End Function
+End Module
+
+Public MustInherit Class Vehicle
+    Private _fuel As Double
+    Private _speed As Integer
+    Private _distance As Double
+
+    Protected Sub New(name As String, maxSpeed As Integer, initialFuel As Double)
+        Me.Name = name
+        Me.MaxSpeed = maxSpeed
+        _fuel = Math.Max(0, Math.Min(100, initialFuel))
+    End Sub
+
+    Public ReadOnly Property Name As String
+    Public ReadOnly Property MaxSpeed As Integer
+    Public ReadOnly Property Fuel As Double
+        Get
+            Return _fuel
+        End Get
+    End Property
+    Public ReadOnly Property Speed As Integer
+        Get
+            Return _speed
+        End Get
+    End Property
+    Public ReadOnly Property Distance As Double
+        Get
+            Return _distance
+        End Get
+    End Property
+    Public MustOverride ReadOnly Property VehicleType As String
+
+    Protected MustOverride Function AccelerationAmount() As Integer
+    Protected MustOverride Function FuelConsumption() As Double
+
+    Public Function Accelerate() As Integer
+        If _fuel <= 0 Then Return _speed
+
+        _speed = Math.Min(MaxSpeed, _speed + AccelerationAmount())
+        ConsumeFuel()
+        Return _speed
+    End Function
+
+    Public Sub Brake(amount As Integer)
+        If amount > 0 Then _speed = Math.Max(0, _speed - amount)
+    End Sub
+
+    Public Function Refuel(amount As Double) As Double
+        If amount <= 0 Then Return 0
+
+        Dim previousFuel = _fuel
+        _fuel = Math.Min(100, _fuel + amount)
+        Return _fuel - previousFuel
+    End Function
+
+    Public Function RaceStep() As Boolean
+        If _fuel <= 0 Then Return False
+
+        Accelerate()
+        _distance += _speed / 10.0
+        Return True
+    End Function
+
+    Public Function GetStatus() As String
+        Return $"{VehicleType} {Name} | snelheid: {Speed} km/u | maximum: {MaxSpeed} km/u | brandstof: {Fuel:F1}% | afstand: {Distance:F1} km"
+    End Function
+
+    Private Sub ConsumeFuel()
+        _fuel = Math.Max(0, _fuel - FuelConsumption())
+    End Sub
+End Class
+
+Public Class Car
+    Inherits Vehicle
+
+    Public Sub New(name As String, maxSpeed As Integer, initialFuel As Double)
+        MyBase.New(name, maxSpeed, initialFuel)
+    End Sub
+
+    Public Overrides ReadOnly Property VehicleType As String
+        Get
+            Return "Auto"
+        End Get
+    End Property
+
+    Protected Overrides Function AccelerationAmount() As Integer
+        Return 18
+    End Function
+
+    Protected Overrides Function FuelConsumption() As Double
+        Return 8
+    End Function
+End Class
+
+Public Class Motorcycle
+    Inherits Vehicle
+
+    Public Sub New(name As String, maxSpeed As Integer, initialFuel As Double)
+        MyBase.New(name, maxSpeed, initialFuel)
+    End Sub
+
+    Public Overrides ReadOnly Property VehicleType As String
+        Get
+            Return "Motorfiets"
+        End Get
+    End Property
+
+    Protected Overrides Function AccelerationAmount() As Integer
+        Return 25
+    End Function
+
+    Protected Overrides Function FuelConsumption() As Double
+        Return 10
+    End Function
+End Class

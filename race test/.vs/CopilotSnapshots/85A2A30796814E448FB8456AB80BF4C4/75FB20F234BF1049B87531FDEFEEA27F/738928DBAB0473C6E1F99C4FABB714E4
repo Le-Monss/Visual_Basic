@@ -1,0 +1,261 @@
+﻿Imports System
+Imports System.Collections.Generic
+
+Module Program
+    Sub Main(args As String())
+        Console.WriteLine("Kies een race:")
+        Console.WriteLine("1. Formule 1")
+        Console.WriteLine("2. Rally")
+        Dim raceKeuze = LeesGetal("Keuze: ")
+
+        Dim aantalSpelers = LeesGetal("Hoeveel spelers? (2-4): ")
+        Dim namen As New List(Of String)
+        For speler As Integer = 1 To aantalSpelers
+            Console.Write($"Naam van speler {speler}: ")
+            Dim naam = Console.ReadLine()
+            namen.Add(naam)
+        Next
+
+        Dim race As Wedstrijd
+        If raceKeuze = 1 Then
+            Dim bochten = LeesGetal("Hoeveel bochten heeft de baan? (1-20): ")
+            Dim baanLengte = LeesGetal("Hoe lang is de baan in km? (10-500): ")
+            race = New Formula1Race(bochten, baanLengte)
+            For Each naam In namen
+                race.VoegDeelnemerToe(New Formula1(naam, 60, 8))
+            Next
+        Else
+            Console.WriteLine("Kies de ondergrond: 1. Asfalt  2. Gravel  3. Modder")
+            Dim ondergrondKeuze = LeesGetal("Keuze: ")
+            Dim ondergronden As String() = {"asfalt", "gravel", "modder"}
+            Dim ondergrond = ondergronden(ondergrondKeuze - 1)
+            Dim hoogteverschil = LeesGetal("Hoogteverschil in meters? (0-10): ")
+            Dim baanLengte = LeesGetal("Hoe lang is de baan in km? (10-500): ")
+            race = New RallyRace(ondergrond, hoogteverschil, baanLengte)
+            For Each naam In namen
+                race.VoegDeelnemerToe(New Sportwagen(naam, 60))
+            Next
+        End If
+
+        race.Start()
+        race.ToonUitslag()
+    End Sub
+
+    Public Function LeesGetal(vraag As String) As Integer
+        Console.Write(vraag)
+        Return Integer.Parse(Console.ReadLine())
+    End Function
+End Module
+
+Public MustInherit Class Voertuig
+    Private Const TankInhoud As Double = 50
+    Private _brandstof As Double
+    Private _afstand As Double
+
+    Protected Sub New(merk As String, maxAfstandPerBeurt As Integer)
+        Me.Merk = merk
+        Me.MaxAfstandPerBeurt = maxAfstandPerBeurt
+        _brandstof = TankInhoud
+    End Sub
+
+    Public ReadOnly Property Merk As String
+    Public ReadOnly Property MaxAfstandPerBeurt As Integer
+    Public ReadOnly Property Brandstof As Double
+        Get
+            Return _brandstof
+        End Get
+    End Property
+    Public ReadOnly Property Afstand As Double
+        Get
+            Return _afstand
+        End Get
+    End Property
+    Public MustOverride ReadOnly Property VerbruikPerKm As Double
+
+    Public Function Tanken() As Double
+        Dim toegevoegd = TankInhoud - _brandstof
+        _brandstof = TankInhoud
+        Return toegevoegd
+    End Function
+
+    Public Function Rijd(gevraagdeAfstand As Integer, afstandTotBocht As Double) As String
+        If _brandstof <= 0 Then Return "De tank is leeg. Tank eerst bij."
+
+        Dim afstand = Math.Min(gevraagdeAfstand, MaxAfstandPerBeurt)
+        Dim verbruik = afstand * (afstand / 10.0) * VerbruikPerKm
+        Dim bochtBericht As String = ""
+
+        If afstandTotBocht >= 0 AndAlso afstand >= afstandTotBocht Then
+            If afstand > 5 Then
+                verbruik = verbruik * 2 + 5
+                _brandstof = Math.Max(0, _brandstof - verbruik)
+                Return $"{Merk} vliegt uit de bocht: je reed {afstand} km bij de bocht. Extra brandstofverbruik: {verbruik:F1} L."
+            End If
+            bochtBericht = "Bocht veilig genomen. "
+        End If
+
+        If verbruik > _brandstof Then Return "Niet genoeg brandstof om zo ver te rijden. Tank eerst bij."
+
+        _brandstof -= verbruik
+        _afstand += afstand
+        Return $"{bochtBericht}Rijdt {afstand} km. Brandstofverbruik: {verbruik:F1} L."
+    End Function
+
+    Public Function ToonInfo() As String
+        Dim bereik = _brandstof / VerbruikPerKm
+        Return $"{Merk}: max. {MaxAfstandPerBeurt} km per beurt, brandstof {Brandstof:F1} L, bereik bij 10 km per beurt: {bereik:F0} km"
+    End Function
+End Class
+
+Public Class Formula1
+    Inherits Voertuig
+
+    Private ReadOnly _downforce As Integer
+
+    Public Sub New(merk As String, maxAfstandPerBeurt As Integer, downforce As Integer)
+        MyBase.New(merk, maxAfstandPerBeurt)
+        _downforce = downforce
+    End Sub
+
+    Public Overrides ReadOnly Property VerbruikPerKm As Double
+        Get
+            Return 0.3 + _downforce / 1000.0
+        End Get
+    End Property
+End Class
+
+Public Class Sportwagen
+    Inherits Voertuig
+
+    Public Sub New(merk As String, maxAfstandPerBeurt As Integer)
+        MyBase.New(merk, maxAfstandPerBeurt)
+    End Sub
+
+    Public Overrides ReadOnly Property VerbruikPerKm As Double
+        Get
+            Return 0.2
+        End Get
+    End Property
+End Class
+
+Public MustInherit Class Wedstrijd
+    Protected ReadOnly Deelnemers As New List(Of Voertuig)
+    Private _winnaar As Voertuig
+
+    Protected Sub New(naam As String, baanLengte As Integer)
+        Me.Naam = naam
+        Me.BaanLengte = baanLengte
+    End Sub
+
+    Public ReadOnly Property Naam As String
+    Public ReadOnly Property BaanLengte As Integer
+    Protected MustOverride ReadOnly Property AantalBochten As Integer
+    Public MustOverride Sub Start()
+
+    Public Sub VoegDeelnemerToe(voertuig As Voertuig)
+        Deelnemers.Add(voertuig)
+    End Sub
+
+    Protected Function AfstandTotVolgendeBocht(voertuig As Voertuig) As Double
+        For bocht As Integer = 1 To AantalBochten
+            Dim bochtPositie = BaanLengte * bocht / (AantalBochten + 1.0)
+            If bochtPositie > voertuig.Afstand Then Return bochtPositie - voertuig.Afstand
+        Next
+        Return -1
+    End Function
+
+    Protected Sub SpeelRace()
+        Dim raceBezig As Boolean = True
+        While raceBezig
+            raceBezig = False
+            For Each voertuig In Deelnemers
+                If voertuig.Afstand >= BaanLengte Then Continue For
+                raceBezig = True
+
+                Console.WriteLine()
+                Console.WriteLine($"Beurt van {voertuig.Merk}")
+                Console.WriteLine(voertuig.ToonInfo())
+                Console.WriteLine($"Afstand tot de finish: {voertuig.Afstand:F1}/{BaanLengte} km")
+                Dim afstandBocht = AfstandTotVolgendeBocht(voertuig)
+                If afstandBocht >= 0 Then
+                    Console.WriteLine($"Volgende bocht binnen {afstandBocht:F1} km. Als je deze beurt de bocht bereikt, mag je maximaal 5 km rijden om veilig te blijven.")
+                Else
+                    Console.WriteLine("Er zijn geen bochten meer.")
+                End If
+                Console.WriteLine("1. Rijden  2. Tanken")
+                Dim actie = Program.LeesGetal("Kies actie: ")
+
+                Select Case actie
+                    Case 1
+                        Dim rijAfstand = Program.LeesGetal($"Hoeveel km wil je rijden? (1-{voertuig.MaxAfstandPerBeurt}): ")
+                        Console.WriteLine(voertuig.Rijd(rijAfstand, afstandBocht))
+                    Case 2
+                        Console.WriteLine($"Bijgetankt: {voertuig.Tanken():F1} L.")
+                End Select
+
+                If voertuig.Afstand >= BaanLengte Then
+                    If _winnaar Is Nothing Then _winnaar = voertuig
+                    Console.WriteLine($"{voertuig.Merk} heeft de finish bereikt!")
+                End If
+            Next
+        End While
+    End Sub
+
+    Public Sub ToonUitslag()
+        If _winnaar Is Nothing Then
+            Console.WriteLine("Geen winnaar: niemand heeft de finish gehaald.")
+        Else
+            Console.WriteLine($"Winnaar van {Naam}: {_winnaar.Merk}!")
+        End If
+
+        For Each voertuig In Deelnemers
+            Console.WriteLine($"{voertuig.Merk}: {voertuig.Afstand:F1} km, {voertuig.Brandstof:F1} L brandstof")
+        Next
+    End Sub
+End Class
+
+Public Class Formula1Race
+    Inherits Wedstrijd
+
+    Private ReadOnly _bochten As Integer
+
+    Public Sub New(bochten As Integer, baanLengte As Integer)
+        MyBase.New("Formule 1", baanLengte)
+        _bochten = bochten
+    End Sub
+
+    Protected Overrides ReadOnly Property AantalBochten As Integer
+        Get
+            Return _bochten
+        End Get
+    End Property
+
+    Public Overrides Sub Start()
+        Console.WriteLine($"De Formule 1-race start met {_bochten} bochten.")
+        SpeelRace()
+    End Sub
+End Class
+
+Public Class RallyRace
+    Inherits Wedstrijd
+
+    Private ReadOnly _ondergrond As String
+    Private ReadOnly _hoogteverschil As Integer
+
+    Public Sub New(ondergrond As String, hoogteverschil As Integer, baanLengte As Integer)
+        MyBase.New("Rally", baanLengte)
+        _ondergrond = ondergrond
+        _hoogteverschil = hoogteverschil
+    End Sub
+
+    Protected Overrides ReadOnly Property AantalBochten As Integer
+        Get
+            Return 5
+        End Get
+    End Property
+
+    Public Overrides Sub Start()
+        Console.WriteLine($"De rally start op {_ondergrond} met {_hoogteverschil} meter hoogteverschil en {AantalBochten} bochten.")
+        SpeelRace()
+    End Sub
+End Class

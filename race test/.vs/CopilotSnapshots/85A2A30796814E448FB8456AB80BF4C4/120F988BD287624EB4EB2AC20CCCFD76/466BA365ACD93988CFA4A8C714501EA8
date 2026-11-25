@@ -1,0 +1,38 @@
+﻿# Klassendiagram – Racewedstrijd
+
+```text
+Formula1Race                     RallyRace
+- bochten                        - ondergrond
++ Start()                        - hoogteverschil
+
+	   \                         + Start()
+		\                       /
+		  ------ Wedstrijd ------
+		  - deelnemers: List(Of Voertuig)
+		  - baanLengte: Integer
+		  - AantalBochten: Integer
+		  + VoegDeelnemerToe(v): Sub
+		  + AfstandTotVolgendeBocht(v): Double
+		  + Start(): MustOverride
+		  + ToonUitslag(): Sub
+					|
+					| deelnemers
+					v
+Formula1                         Sportwagen
+- downforce                      - turbo
++ VerbruikPerKm: Double          + VerbruikPerKm: Double
+	   \                         /
+		\                       /
+		  ------ Voertuig ------
+		  - brandstof: Double
+		  - afstandPerBeurt: Integer
+		  - afstand: Double
+		  + Bestuurder: String
+		  + Merk: String
+		  + MaxAfstandPerBeurt: Integer
+		  + Rijd(km, afstandTotBocht): String
+		  + Tanken(): Double
+		  + Stoppen(): Sub
+```
+
+`Formula1Race` en `RallyRace` erven van `Wedstrijd`. `Formula1` en `Sportwagen` erven van `Voertuig`. De speler kiest hoeveel kilometer het voertuig deze beurt rijdt. De volgende bocht wordt op de baan verdeeld en de afstand ernaartoe wordt getoond. Een overshoot van minder dan 5 km is veilig; bij 5 km of meer vliegt de racer uit de bocht en verbruikt extra brandstof.

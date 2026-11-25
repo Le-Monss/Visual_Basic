@@ -1,0 +1,25 @@
+﻿# Klassendiagram – Racewedstrijd
+
+```text
+		  <<MustInherit>>
+			 Vehicle
+	  ---------------------
+	  - _fuel: Integer
+	  - _speed: Integer
+	  - _distance: Double
+	  + Name: String
+	  + MaxSpeed: Integer
+	  + New(name, maxSpeed, fuel)
+	  + Rijd(): Boolean
+	  + ToonInfo(): String
+	  # Versnelling(): Integer
+				^
+		  ------+------
+		  |           |
+		 Car      Motorcycle
+		 + New()    + New()
+		 + Versnelling()
+					+ Versnelling()
+```
+
+`Car` en `Motorcycle` erven van `Vehicle`. Een auto versnelt 20 km/u per ronde; een motorfiets 30 km/u. De gedeelde racecode staat in `Vehicle`.
