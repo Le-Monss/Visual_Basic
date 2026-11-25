@@ -1,0 +1,19 @@
+C:\Users\jacob.lybaert\source\repos\race test\race test\bin\Debug\net10.0\race test.exe
+C:\Users\jacob.lybaert\source\repos\race test\race test\bin\Debug\net10.0\race test.deps.json
+C:\Users\jacob.lybaert\source\repos\race test\race test\bin\Debug\net10.0\race test.runtimeconfig.json
+C:\Users\jacob.lybaert\source\repos\race test\race test\bin\Debug\net10.0\race test.dll
+C:\Users\jacob.lybaert\source\repos\race test\race test\bin\Debug\net10.0\race test.pdb
+C:\Users\jacob.lybaert\source\repos\race test\race test\obj\Debug\net10.0\race test.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jacob.lybaert\source\repos\race test\race test\obj\Debug\net10.0\race test.AssemblyInfoInputs.cache
+C:\Users\jacob.lybaert\source\repos\race test\race test\obj\Debug\net10.0\race test.AssemblyInfo.vb
+C:\Users\jacob.lybaert\source\repos\race test\race test\obj\Debug\net10.0\race test.vbproj.CoreCompileInputs.cache
+C:\Users\jacob.lybaert\source\repos\race test\race test\obj\Debug\net10.0\race test.dll
+C:\Users\jacob.lybaert\source\repos\race test\race test\obj\Debug\net10.0\refint\race test.dll
+C:\Users\jacob.lybaert\source\repos\race test\race test\obj\Debug\net10.0\race test.pdb
+C:\Users\jacob.lybaert\source\repos\race test\race test\obj\Debug\net10.0\race test.genruntimeconfig.cache
+C:\Users\jacob.lybaert\source\repos\race test\race test\obj\Debug\net10.0\ref\race test.dll
+C:\Users\jacob.lybaert\AppData\Local\Temp\RaceTestBuild\race test.deps.json
+C:\Users\jacob.lybaert\AppData\Local\Temp\RaceTestBuild\race test.runtimeconfig.json
+C:\Users\jacob.lybaert\AppData\Local\Temp\RaceTestBuild\race test.dll
+C:\Users\jacob.lybaert\AppData\Local\Temp\RaceTestBuild\race test.pdb
+C:\Users\jacob.lybaert\source\repos\race test\race test\obj\Debug\net10.0\race test.vbproj.Up2Date
