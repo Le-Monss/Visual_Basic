@@ -1,0 +1,35 @@
+﻿# Klassendiagram – Racewedstrijd
+
+```text
+					<<MustInherit>>
+					Vehicle
+		-------------------------------------
+		- _fuel: Double
+		- _speed: Integer
+		- _distance: Double
+		+ Name: String {read-only}
+		+ MaxSpeed: Integer {read-only}
+		+ Fuel: Double {read-only}
+		+ Speed: Integer {read-only}
+		+ Distance: Double {read-only}
+		+ New(name, maxSpeed, initialFuel)
+		+ Accelerate(): Integer
+		+ Brake(amount): Sub
+		+ Refuel(amount): Double
+		+ RaceStep(): Boolean
+		+ GetStatus(): String
+		# AccelerationAmount(): Integer {MustOverride}
+		# FuelConsumption(): Double {MustOverride}
+		+ VehicleType: String {MustOverride}
+					^                 ^
+					|                 |
+		  ------------                 -------------
+		  Car                                          Motorcycle
+	------------------                         ------------------
+	+ New(name, maxSpeed, initialFuel)          + New(name, maxSpeed, initialFuel)
+	+ AccelerationAmount(): Integer             + AccelerationAmount(): Integer
+	+ FuelConsumption(): Double                 + FuelConsumption(): Double
+	+ VehicleType: String                        + VehicleType: String
+```
+
+`Car` en `Motorcycle` erven de gedeelde eigenschappen en acties van `Vehicle`. Ze vullen de abstracte methoden anders in: auto's versnellen 18 km/u per actie en verbruiken 8% brandstof; motorfietsen versnellen 25 km/u en verbruiken 10%. De basisklasse bewaart brandstof, snelheid en afstand privé en biedt alleen gecontroleerde acties om die waarden te wijzigen.

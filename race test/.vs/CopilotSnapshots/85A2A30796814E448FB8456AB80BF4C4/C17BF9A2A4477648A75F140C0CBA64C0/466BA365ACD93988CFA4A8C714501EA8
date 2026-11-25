@@ -1,0 +1,22 @@
+﻿# Klassendiagram – Racewedstrijd
+
+```text
+ Formula1Race             RallyRace
+	   \                     /
+		\                   /
+		  ---- Wedstrijd ----
+				 |
+	   deelnemers: List(Of Voertuig)
+	   VoegDeelnemerToe(v)
+	   Start()
+	   ToonUitslag()
+
+ Formula1                 Sportwagen
+	  \                      /
+	   \                    /
+		  ---- Voertuig ----
+	   Merk, MaxSnelheid, Brandstof
+	   Versnel(), RemAf(), Rijd()
+```
+
+`Formula1Race` en `RallyRace` erven van `Wedstrijd`. `Formula1` en `Sportwagen` erven van `Voertuig`. Het programma maakt vier voertuigen aan en laat ze deelnemen aan beide racetypen.

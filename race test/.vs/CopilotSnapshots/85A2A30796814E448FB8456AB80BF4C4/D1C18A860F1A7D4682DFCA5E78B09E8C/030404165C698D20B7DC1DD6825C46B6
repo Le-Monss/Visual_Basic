@@ -1,0 +1,116 @@
+﻿Imports System
+Imports System.Collections.Generic
+
+Module Program
+    Sub Main(args As String())
+        Dim voertuigen As New List(Of Vehicle) From {
+            New Car("Bliksem", 180, 5),
+            New Motorcycle("Valk", 210, 5),
+            New Car("Storm", 165, 5),
+            New Motorcycle("Pijl", 230, 5)
+        }
+
+        Dim keuze As String
+        Do
+            Console.WriteLine()
+            Console.WriteLine("1. Toon voertuigen")
+            Console.WriteLine("2. Start race")
+            Console.WriteLine("0. Afsluiten")
+            Console.Write("Kies: ")
+            keuze = Console.ReadLine()
+
+            Select Case keuze
+                Case "1"
+                    For Each voertuig In voertuigen
+                        Console.WriteLine(voertuig.ToonInfo())
+                    Next
+                Case "2"
+                    StartRace(voertuigen)
+                Case "0"
+                    Console.WriteLine("Tot ziens!")
+                Case Else
+                    Console.WriteLine("Ongeldige keuze.")
+            End Select
+        Loop Until keuze = "0"
+    End Sub
+
+    Private Sub StartRace(voertuigen As List(Of Vehicle))
+        Console.WriteLine("De race begint!")
+
+        For ronde As Integer = 1 To 5
+            Console.WriteLine($"Ronde {ronde}")
+            For Each voertuig In voertuigen
+                If voertuig.Rijd() Then
+                    Console.WriteLine($"{voertuig.Name}: {voertuig.Distance:F1} km")
+                Else
+                    Console.WriteLine($"{voertuig.Name} heeft geen brandstof meer.")
+                End If
+            Next
+        Next
+
+        Dim winnaar As Vehicle = voertuigen(0)
+        For Each voertuig In voertuigen
+            If voertuig.Distance > winnaar.Distance Then winnaar = voertuig
+        Next
+        Console.WriteLine($"Winnaar: {winnaar.Name}!")
+    End Sub
+End Module
+
+Public MustInherit Class Vehicle
+    Private _fuel As Integer
+    Private _speed As Integer
+    Private _distance As Double
+
+    Protected Sub New(name As String, maxSpeed As Integer, fuel As Integer)
+        Me.Name = name
+        Me.MaxSpeed = maxSpeed
+        _fuel = fuel
+    End Sub
+
+    Public ReadOnly Property Name As String
+    Public ReadOnly Property MaxSpeed As Integer
+    Public ReadOnly Property Distance As Double
+        Get
+            Return _distance
+        End Get
+    End Property
+
+    Protected MustOverride Function Versnelling() As Integer
+
+    Public Function Rijd() As Boolean
+        If _fuel = 0 Then Return False
+
+        _speed = Math.Min(MaxSpeed, _speed + Versnelling())
+        _fuel -= 1
+        _distance += _speed / 10.0
+        Return True
+    End Function
+
+    Public Function ToonInfo() As String
+        Return $"{Name}: maximum {MaxSpeed} km/u, brandstof {_fuel}, afstand {Distance:F1} km"
+    End Function
+End Class
+
+Public Class Car
+    Inherits Vehicle
+
+    Public Sub New(name As String, maxSpeed As Integer, fuel As Integer)
+        MyBase.New(name, maxSpeed, fuel)
+    End Sub
+
+    Protected Overrides Function Versnelling() As Integer
+        Return 20
+    End Function
+End Class
+
+Public Class Motorcycle
+    Inherits Vehicle
+
+    Public Sub New(name As String, maxSpeed As Integer, fuel As Integer)
+        MyBase.New(name, maxSpeed, fuel)
+    End Sub
+
+    Protected Overrides Function Versnelling() As Integer
+        Return 30
+    End Function
+End Class
