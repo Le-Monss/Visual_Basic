@@ -16,7 +16,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("race test"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7af7b1b6271f4913667e56d4ecf9d413adf127ab"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("race test"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("race test"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")> 
