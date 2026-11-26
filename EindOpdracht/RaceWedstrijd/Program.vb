@@ -74,11 +74,11 @@ Public Class rallyRace 'Rally race werkt op zelfde principe als formule1'
         'Gewoon hier dat ipv turns je het ondegrond kiest'
         Select Case ondergrond.Trim().ToLowerInvariant()
             Case "asfalt"
-                dblVertragingFactor = 1.0 'verandert u snelheidscalculatie'
+                dblVertragingFactor = 1.2 'verandert u snelheidscalculatie'
             Case "gravel"
-                dblVertragingFactor = 1.2
-            Case "modder"
                 dblVertragingFactor = 1.5
+            Case "modder"
+                dblVertragingFactor = 1.8
         End Select
     End Sub
     Public Overrides Function Start() As Voertuig
@@ -95,8 +95,7 @@ Public Class rallyRace 'Rally race werkt op zelfde principe als formule1'
 
                 v.Rijd(dblVertragingFactor)
             Next
-            tpVerstrekenTijd += TimeSpan.FromMinutes(rng.Next(1, 3))
-            tpVerstrekenTijd += TimeSpan.FromSeconds(rng.Next(1, 60))
+            tpVerstrekenTijd += TimeSpan.FromMinutes(1 * dblVertragingFactor * 1.01)
         Loop
 
         voWinnaar = liDeelnemers.
@@ -145,7 +144,7 @@ Public Class Voertuig
     Public Sub Rijd(Optional intturns As Integer = 1,
             Optional vertragingFactor As Double = 1.0)
         Const dblurenPerTurn As Double = 1.0 / 60.0
-        Dim variation As Double = 0.95 + rng.NextDouble() * 0.1
+        Dim variation As Double = 0.9 + rng.NextDouble() * 0.5
         'variation voor wat randomness in de races'
         intCounter += dblHuidigeSnelheid * dblurenPerTurn _
                   / intturns / vertragingFactor * variation
@@ -164,13 +163,13 @@ Public Class Formule1
     End Sub
 
     Public Overrides Sub Versnel()
-        dblHuidigeSnelheid += intacceleratie * (1 + intDownforce / 200.0) _
-                       * (0.8 + rng.NextDouble() * 0.4)
+        dblHuidigeSnelheid += (1 + intDownforce / 200.0) _
+                       * (0.8 + rng.NextDouble() * 0.4) / intacceleratie
         dblHuidigeSnelheid = Math.Min(dblHuidigeSnelheid, intmaxSnelheid)
     End Sub
     Public Overrides Sub Remmen()
         Dim factor As Double = 1 + intDownforce / 300.0
-        dblHuidigeSnelheid -= intacceleratie * factor * (0.5 + rng.NextDouble() * 0.5)
+        dblHuidigeSnelheid -= (factor * (0.5 + rng.NextDouble() * 0.5)) / intacceleratie
         dblHuidigeSnelheid = Math.Max(dblHuidigeSnelheid, 0)
     End Sub
 End Class
@@ -186,7 +185,7 @@ Public Class Rally
     End Sub
     Public Overrides Sub Versnel()
         Dim factor As Double = 1 + intGrip / 250.0
-        dblHuidigeSnelheid += intacceleratie * factor * (0.8 + rng.NextDouble() * 0.4)
+        dblHuidigeSnelheid += (factor * (0.8 + rng.NextDouble() * 0.4)) / intacceleratie
         dblHuidigeSnelheid = Math.Min(dblHuidigeSnelheid, intmaxSnelheid)
     End Sub
 
@@ -194,7 +193,7 @@ Public Class Rally
         Dim gripReduction As Double = 1 - intGrip / 200.0
         Dim factor As Double = Math.Max(0.2, gripReduction)
 
-        dblHuidigeSnelheid -= intacceleratie * factor * (0.5 + rng.NextDouble() * 0.5)
+        dblHuidigeSnelheid -= (factor * (0.5 + rng.NextDouble() * 0.8)) / intacceleratie
         dblHuidigeSnelheid = Math.Max(dblHuidigeSnelheid, 0)
     End Sub
 
@@ -202,45 +201,50 @@ End Class
 
 Public Module Program
     Public Sub Main()
-        Console.WriteLine("Kies een race: formule1 of rally")
         Dim keuze As String
+        console.writeline("===OOP GP1===")
+        Console.WriteLine("Kies een race: formule1 of rally")
         Do
             keuze = Console.ReadLine().Trim().ToLowerInvariant() 'kiezen van categorie van race'
-            If keuze <> "formule1" AndAlso keuze <> "rally" Then
+            If keuze <> "formule1" AndAlso keuze <> "rally" AndAlso keuze <> "stop" Then
                 Console.WriteLine("Ongeldige invoer. Voer 'formule1' of 'rally' in.")
+                Continue Do
+            ElseIf keuze = "stop" Then
+                Exit Do
+            End If 'gaat niet verder tot je een geldige keuze maakt'
+            If (keuze = "formule1") Then
+                Dim race As New formule1Race(20)
+                race.VoegDeelnemerToe(New Formule1("Ferrari", 200, 350, 3.5, 50))
+                'merk, snelheid, maxSnelheid, acceleratie, downforce'
+                race.VoegDeelnemerToe(New Formule1("Mercedes", 200, 340, 3.2, 60))
+                race.VoegDeelnemerToe(New Formule1("Red Bull", 200, 330, 3.0, 70))
+
+                Dim winnaar As Voertuig = race.Start()
+                Console.WriteLine($"De winnaar is: {winnaar.strmerk}")
+                Console.WriteLine($"Race time: {race.tpVerstrekenTijd.ToString("hh\:mm\:ss")}")
+                race.ToonUitslag()
+
+            ElseIf keuze = "rally" Then
+                Console.WriteLine("Kies een ondergrond: asfalt, gravel, modder")
+                Dim ondergrond As String
+                Do
+                    ondergrond = Console.ReadLine().Trim().ToLowerInvariant()
+                    If Not ondergrond = "asfalt" AndAlso Not ondergrond = "gravel" AndAlso Not ondergrond = "modder" Then
+                        Console.WriteLine("Ongeldige ondergrond. Probeer opnieuw.")
+                    End If
+                Loop Until ondergrond = "asfalt" OrElse ondergrond = "gravel" OrElse ondergrond = "modder"
+
+                Dim race As New rallyRace(ondergrond, 100)
+                race.VoegDeelnemerToe(New Rally("Subaru", 180, 300, 2.5, 80)) 'merk, snelheid, maxSnelheid, acceleratie, grip'
+                race.VoegDeelnemerToe(New Rally("Mitsubishi", 190, 310, 2.8, 70))
+                race.VoegDeelnemerToe(New Rally("Toyota", 200, 280, 3.0, 60))
+
+                Dim winnaar As Voertuig = race.Start()
+                Console.WriteLine($"De winnaar is: {winnaar.strmerk}")
+                Console.WriteLine($"Race time: {race.tpVerstrekenTijd.ToString("hh\:mm\:ss")}")
+                race.ToonUitslag()
             End If
-        Loop Until keuze = "formule1" OrElse keuze = "rally" 'gaat niet verder tot je een geldige keuze maakt'
-        If (keuze = "formule1") Then
-            Dim race As New formule1Race(10)
-            race.VoegDeelnemerToe(New Formule1("Ferrari", 200, 350, 3.5, 50))
-            'merk, snelheid, maxSnelheid, acceleratie, downforce'
-            race.VoegDeelnemerToe(New Formule1("Mercedes", 210, 340, 3.2, 60))
-            race.VoegDeelnemerToe(New Formule1("Red Bull", 220, 330, 3.0, 70))
-
-            Dim winnaar As Voertuig = race.Start()
-            Console.WriteLine($"De winnaar is: {winnaar.strmerk}")
-            Console.WriteLine($"Race time: {race.tpVerstrekenTijd.ToString("hh\:mm\:ss")}")
-            race.ToonUitslag()
-
-        Else
-            Console.WriteLine("Kies een ondergrond: asfalt, gravel, modder")
-            Dim ondergrond As String
-            Do
-                ondergrond = Console.ReadLine().Trim().ToLowerInvariant()
-                If Not ondergrond = "asfalt" AndAlso Not ondergrond = "gravel" AndAlso Not ondergrond = "modder" Then
-                    Console.WriteLine("Ongeldige ondergrond. Probeer opnieuw.")
-                End If
-            Loop Until ondergrond = "asfalt" OrElse ondergrond = "gravel" OrElse ondergrond = "modder"
-
-            Dim race As New rallyRace(ondergrond, 100)
-            race.VoegDeelnemerToe(New Rally("Subaru", 180, 300, 2.5, 80)) 'merk, snelheid, maxSnelheid, acceleratie, grip'
-            race.VoegDeelnemerToe(New Rally("Mitsubishi", 190, 310, 2.8, 70))
-            race.VoegDeelnemerToe(New Rally("Toyota", 200, 280, 3.0, 60))
-
-            Dim winnaar As Voertuig = race.Start()
-            Console.WriteLine($"De winnaar is: {winnaar.strmerk}")
-            Console.WriteLine($"Race time: {race.tpVerstrekenTijd.ToString("hh\:mm\:ss")}")
-            race.ToonUitslag()
-        End If
+            console.writeline("Typ 'stop' om te stoppen of kies weeral een race type tussen 'formule1' en 'rally'")
+        Loop
     End Sub
 End Module

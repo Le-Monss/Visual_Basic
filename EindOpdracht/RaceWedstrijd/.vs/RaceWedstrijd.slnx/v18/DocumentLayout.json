@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Sinder\\GitSHizzles\\Visual_Basic\\EindOpdracht\\RaceWedstrijd\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{454C350D-8658-9C7E-A6EB-94B1B2A44CF7}|RaceWedstrijd.vbproj|c:\\users\\sinder\\gitshizzles\\visual_basic\\eindopdracht\\racewedstrijd\\program.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{454C350D-8658-9C7E-A6EB-94B1B2A44CF7}|RaceWedstrijd.vbproj|solutionrelative:program.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Sinder\\GitSHizzles\\Visual_Basic\\EindOpdracht\\RaceWedstrijd\\Program.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{454C350D-8658-9C7E-A6EB-94B1B2A44CF7}|RaceWedstrijd.vbproj|c:\\users\\sinder\\gitshizzles\\visual_basic\\eindopdracht\\racewedstrijd\\racewedstrijd.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{454C350D-8658-9C7E-A6EB-94B1B2A44CF7}|RaceWedstrijd.vbproj|solutionrelative:racewedstrijd.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Sinder\\GitSHizzles\\Visual_Basic\\EindOpdracht\\RaceWedstrijd\\RaceWedstrijd.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RaceWedstrijd.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "Program.vb",
               "ToolTip": "C:\\Users\\Sinder\\GitSHizzles\\Visual_Basic\\EindOpdracht\\RaceWedstrijd\\Program.vb",
               "RelativeToolTip": "Program.vb",
-              "ViewState": "AgIAANsAAAAAAAAAAAAAADAAAAB3AAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAGEAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2026-11-24T11:42:18.992Z",
               "EditorCaption": ""
@@ -36,14 +36,13 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "RaceWedstrijd",
+              "Title": "RaceWedstrijd.vbproj",
               "DocumentMoniker": "C:\\Users\\Sinder\\GitSHizzles\\Visual_Basic\\EindOpdracht\\RaceWedstrijd\\RaceWedstrijd.vbproj",
               "RelativeDocumentMoniker": "RaceWedstrijd.vbproj",
               "ToolTip": "C:\\Users\\Sinder\\GitSHizzles\\Visual_Basic\\EindOpdracht\\RaceWedstrijd\\RaceWedstrijd.vbproj",
               "RelativeToolTip": "RaceWedstrijd.vbproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003380|",
-              "WhenOpened": "2026-11-24T11:34:25.392Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-24T11:34:25.392Z"
             }
           ]
         }
